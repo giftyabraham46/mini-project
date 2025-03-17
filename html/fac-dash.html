@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Project Connect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Faculty Dashboard</h2>
+        
+        <div class="tabs">
+            <button onclick="showSection('your-projects')">Your Projects</button>
+            <button onclick="showSection('browse-projects')">Browse Projects</button>
+        </div>
+        
+        <div id="your-projects" class="project-section">
+            <h3>Your Projects</h3>
+            <div id="your-projects-list">
+                <!-- Projects guided by faculty will be inserted here -->
+            </div>
+        </div>
+        
+        <div id="browse-projects" class="project-section" style="display: none;">
+            <h3>Browse Projects</h3>
+            <div class="filter-section">
+                <label for="department">Filter by Department:</label>
+                <select id="department">
+                    <option value="all">All Departments</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="CE">CE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="ME">ME</option>
+                    <option value="CSE(AI)">CSE(AI)</option>
+                </select>
+                
+                <label for="project-type">Filter by Project Type:</label>
+                <select id="project-type">
+                    <option value="all">All Types</option>
+                    <option value="mini-project">Mini Project</option>
+                    <option value="main-project">Main Project</option>
+                    <option value="research-paper">Research Paper</option>
+                    <option value="general-project">General Project</option>
+                </select>
+            </div>
+            
+            <div id="projects-list">
+                <!-- Project cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Dummy data for projects
+        const projects = [
+            { title: "AI-Based Chatbot", department: "CSE", type: "mini-project", description: "A chatbot using AI for automated responses.", guide: "Dr. Smith" },
+            { title: "IoT Smart Home", department: "ECE", type: "main-project", description: "A smart home system with IoT integration.", guide: "Prof. Johnson" },
+            { title: "Structural Analysis", department: "CE", type: "research-paper", description: "Research on modern structural analysis techniques.", guide: "Dr. Smith" }
+        ];
+
+        function loadProjects() {
+            const projectList = document.getElementById("projects-list");
+            const yourProjectsList = document.getElementById("your-projects-list");
+            projectList.innerHTML = "";
+            yourProjectsList.innerHTML = "";
+            
+            projects.forEach(proj => {
+                const projectCard = `<div class='project-card'>
+                    <h3>${proj.title}</h3>
+                    <p><strong>Department:</strong> ${proj.department}</p>
+                    <p><strong>Type:</strong> ${proj.type}</p>
+                    <p><strong>Description:</strong> ${proj.description}</p>
+                </div>`;
+                
+                projectList.innerHTML += projectCard;
+                
+                if (proj.guide === "Dr. Smith") { // Replace with dynamic faculty name
+                    yourProjectsList.innerHTML += projectCard;
+                }
+            });
+        }
+        
+        function showSection(sectionId) {
+            document.getElementById("your-projects").style.display = "none";
+            document.getElementById("browse-projects").style.display = "none";
+            document.getElementById(sectionId).style.display = "block";
+        }
+        
+        document.addEventListener("DOMContentLoaded", loadProjects);
+    </script>
+</body>
+</html>

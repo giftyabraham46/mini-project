@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Project Connect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Student Dashboard</h2>
+        
+        <button onclick="location.href='add-project.html'" class="add-project-btn">+ Add Project</button>
+        
+        <div class="tabs">
+            <button onclick="showSection('your-projects')">Your Projects</button>
+            <button onclick="location.href='browseproject.html'">Browse Projects</button>
+        </div>
+        
+        <div id="your-projects" class="project-section">
+            <h3>Your Projects</h3>
+            <div id="your-projects-list">
+                <!-- Student's projects will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Dummy project data for demonstration
+        const projects = [
+            { title: "Smart Attendance System", batch: "2025", department: "CSE", description: "An AI-powered attendance system.", owner: "Student1" },
+            { title: "IoT-based Traffic Control", batch: "2024", department: "ECE", description: "An IoT project for traffic management.", owner: "Student2" }
+        ];
+
+        function loadProjects() {
+            const yourProjectsList = document.getElementById("your-projects-list");
+            yourProjectsList.innerHTML = "";
+            
+            projects.forEach(proj => {
+                const projectCard = `<div class='project-card'>
+                    <h3>${proj.title}</h3>
+                    <p><strong>Batch:</strong> ${proj.batch}</p>
+                    <p><strong>Department:</strong> ${proj.department}</p>
+                    <p><strong>Description:</strong> ${proj.description}</p>
+                </div>`;
+                
+                if (proj.owner === "Student1") { // Replace dynamically with logged-in student
+                    yourProjectsList.innerHTML += projectCard;
+                }
+            });
+        }
+        
+        document.addEventListener("DOMContentLoaded", loadProjects);
+    </script>
+</body>
+</html>

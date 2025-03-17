@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project - Project Connect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Project</h2>
+        <form id="add-project-form">
+            <label for="project-name">Project Name:</label>
+            <input type="text" id="project-name" required>
+            
+            <label for="problem">Problem Statement:</label>
+            <input type="text" id="problem" required>
+            
+            <label for="solution">Solution:</label>
+            <input type="text" id="solution" required>
+            
+            <label for="short-description">Short Description:</label>
+            <textarea id="short-description" required></textarea>
+            
+            <label for="long-description">Long Description:</label>
+            <textarea id="long-description" required></textarea>
+            
+            <label for="methodology">Methodology:</label>
+            <textarea id="methodology" required></textarea>
+            
+            <label for="result">Result & Conclusion:</label>
+            <textarea id="result" required></textarea>
+            
+            <label for="category">Project Category:</label>
+            <select id="category">
+                <option value="mini-project">Mini Project</option>
+                <option value="main-project">Main Project</option>
+                <option value="research-paper">Research Paper</option>
+                <option value="general-project">General Project</option>
+            </select>
+            
+            <label for="department">Department:</label>
+            <select id="department">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="CE">CE</option>
+                <option value="EEE">EEE</option>
+                <option value="ME">ME</option>
+                <option value="CSE(AI)">CSE(AI)</option>
+            </select>
+            
+            <label for="github-repo">GitHub Repository:</label>
+            <input type="url" id="github-repo">
+            
+            <label for="documents">Upload Related Documents:</label>
+            <input type="file" id="documents" multiple>
+            
+            <button type="submit">Submit Project</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Projects - Project Connect</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="browse-container">
+        <h2>Browse Projects</h2>
+        
+        <label for="filter-category">Filter by Project Category:</label>
+        <select id="filter-category" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="mini-project">Mini Project</option>
+            <option value="main-project">Main Project</option>
+            <option value="research-paper">Research Paper</option>
+            <option value="general-project">General Project</option>
+        </select>
+        
+        <label for="filter-department">Filter by Department:</label>
+        <select id="filter-department" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="CE">CE</option>
+            <option value="EEE">EEE</option>
+            <option value="ME">ME</option>
+            <option value="CSE(AI)">CSE(AI)</option>
+        </select>
+        
+        <label for="filter-domain">Filter by Project Domain:</label>
+        <select id="filter-domain" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="web">Web Development</option>
+            <option value="ai-ml">AI/ML</option>
+            <option value="cybersecurity">Cybersecurity</option>
+            <option value="iot">IoT</option>
+            <option value="blockchain">Blockchain</option>
+            <option value="data-science">Data Science</option>
+        </select>
+        
+        <label for="filter-year">Filter by Year/Batch:</label>
+        <select id="filter-year" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+        </select>
+        
+        <div class="project-list" id="project-list">
+            <!-- Dynamic project entries will be listed here -->
+        </div>
+    </div>
+    
+    <script>
+        const projects = [
+            { name: "Project A", category: "mini-project", department: "CSE", domain: "web", year: "2025" },
+            { name: "Project B", category: "main-project", department: "ECE", domain: "ai-ml", year: "2024" },
+            { name: "Project C", category: "research-paper", department: "ME", domain: "cybersecurity", year: "2023" },
+            { name: "Project D", category: "general-project", department: "CSE(AI)", domain: "iot", year: "2022" }
+        ];
+
+        function applyFilters() {
+            const categoryFilter = document.getElementById("filter-category").value;
+            const departmentFilter = document.getElementById("filter-department").value;
+            const domainFilter = document.getElementById("filter-domain").value;
+            const yearFilter = document.getElementById("filter-year").value;
+            const projectList = document.getElementById("project-list");
+            projectList.innerHTML = "";
+
+            const filteredProjects = projects.filter(project => 
+                (categoryFilter === "all" || project.category === categoryFilter) &&
+                (departmentFilter === "all" || project.department === departmentFilter) &&
+                (domainFilter === "all" || project.domain === domainFilter) &&
+                (yearFilter === "all" || project.year === yearFilter)
+            );
+
+            if (filteredProjects.length === 0) {
+                projectList.innerHTML = "<p>No projects found.</p>";
+            } else {
+                filteredProjects.forEach(project => {
+                    const projectItem = document.createElement("div");
+                    projectItem.classList.add("project-item");
+                    projectItem.innerHTML = `<h3>${project.name}</h3><p>Category: ${project.category}</p><p>Department: ${project.department}</p><p>Domain: ${project.domain}</p><p>Year: ${project.year}</p>`;
+                    projectList.appendChild(projectItem);
+                });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", applyFilters);
+    </script>
+</body>
+</html>
